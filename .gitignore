@@ -1,0 +1,10 @@
+*/target/*
+/target/*
+target/*
+*/.settings/*
+/.settings/*
+.settings/*
+*/.project
+.project
+*/.springBeans
+.springBeans
