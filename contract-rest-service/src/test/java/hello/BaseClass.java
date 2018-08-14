@@ -13,7 +13,7 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ContractRestServiceApplication.class)
 public abstract class BaseClass {
-
+	
 	@Autowired PersonRestController personRestController;
 
 	@MockBean PersonService personService;
@@ -22,7 +22,7 @@ public abstract class BaseClass {
 		RestAssuredMockMvc.standaloneSetup(personRestController);
 
 		Mockito.when(personService.findPersonById(1L))
-				.thenReturn(new Person(1L, "foo", "bee"));
+		.thenReturn(new Person(1L, "foo", "bee"));
 	}
 
 }

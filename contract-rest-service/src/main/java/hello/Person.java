@@ -1,5 +1,9 @@
 package hello;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 class Person {
 
 	Person(Long id, String name, String surname) {
@@ -8,6 +12,9 @@ class Person {
 		this.surname = surname;
 	}
 
+	protected Person() {}
+		
+	@Id
 	private Long id;
 
 	private String name;
