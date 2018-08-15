@@ -7,7 +7,7 @@ E.g: This Person service provides people information to both new and legacy syst
 ![The System](TheSystem.png)
 
 ## The Challenge
-In order for you to keep up with market conditions, new regulations and the competition, you need to make changes to said services.
+In order for you to keep up with market conditions, new regulations and the competition, you need to make schema changes and/or functionality changes to said services.
 The question is: __How do you do that without impacting your existing consumers?__
 
 ## Possible Solutions
