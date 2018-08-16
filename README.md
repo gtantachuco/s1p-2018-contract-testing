@@ -1,8 +1,7 @@
 # Contract Testing with Spring Cloud Contract
 
-## The System
-Your company/organization has many existing services that provide business functionality to customers, internal users and/or partners.
-E.g: This Person service provides people information to both new and legacy systems via __HTTP__ and __asynchronous messaging__
+I am pretty sure your company/organization has many existing services that provide business functionality to customers, internal users and/or partners.
+In our example, this __Person__ service provides people information to both new and legacy systems via __HTTP__ and __asynchronous messaging__
 
 ![The System](TheSystem.png)
 
@@ -13,7 +12,7 @@ The question is: __How do you do that without impacting your existing consumers?
 ## The Solution: Consumer-driven contracts
 __Consumer-driven contracts__ allow you to test integration points between services providers and its consumers without setting up the whole runtime environment. Based on a common API contract, it runs isolated tests between the consumer and a mock provider; and, between a mock consumer and the real provider.
 
-# The Tool: Spring Cloud Contract
+## The Tool: Spring Cloud Contract
 
 
 ## Pre-requisites
