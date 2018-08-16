@@ -3,7 +3,7 @@
 # Part I: Background information
 ## The System
 Your company/organization has many existing services that provide business functionality to customers, internal users and/or partners.
-E.g: This Person service provides people information to both new and legacy systems.
+E.g: This Person service provides people information to both new and legacy systems via __HTTP__ and __asynchronous messaging__
 
 ![The System](TheSystem.png)
 
@@ -14,9 +14,9 @@ The question is: __How do you do that without impacting your existing consumers?
 ## The Solution: Consumer-driven contracts
 __Consumer-driven contracts__ is a solution pattern that: 1) allows you to import consumer expectations as part of the service provider's test suite; and, 2) enables shorter feedback loops. 
 
-__Who can use consumer-drive contracts?__ This pattern is applicable in the context of either a single enterprise or a closed community of well-know services where providers have some influence over how consumers establish contracts with them.
+__Who should use consumer-drive contracts?__ This pattern is applicable in the context of either a single enterprise or a closed community of well-know services where providers have some influence over how consumers establish contracts with them.
 
-Together with unit and integration tests, contract tests should have their spot in the testing pyramid.
+Our goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
 ![Test Pyramid](testing_pyramid.png)
 
 # Part II: Spring Cloud Contract
