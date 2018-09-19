@@ -1,7 +1,7 @@
 # Contract Testing with Spring Cloud Contract
 
-I am pretty sure your company/organization has many existing services that provide business functionality to customers, internal users and/or partners.
-In our example, this __Person__ service provides people information to both new and legacy systems via __HTTP__ and __asynchronous messaging__
+Your company may have many existing services that provide business functionality to customers, internal users and/or partners.
+In our example, this __Person__ service provides people's valuable information to both new and legacy systems via __HTTP__ and __asynchronous messaging__
 
 ![The System](TheSystem.png)
 
@@ -10,12 +10,17 @@ In order for you to keep up with market conditions, new regulations and the comp
 The question is: __How do you do that without impacting your existing consumers?__
 
 ## The Solution: Consumer-driven contracts
-__Consumer-driven contracts__ allow you to test integration points between services providers and its consumers without setting up the whole runtime environment. Based on a common API contract, it runs isolated tests between the consumer and a mock provider; and, between a mock consumer and the real provider.
+__Consumer-driven contracts__ allow you to test integration points between services providers and its consumers without setting up the whole runtime environment. Based on a common API contract, you can run isolated tests between the consumer and a mock provider; and, between a mock consumer and the real provider.
 
 ## The Tool: Spring Cloud Contract
-
+With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. Let's see how two (2) Spring boot apps are configured to leverage Spring Cloud Contract.
 
 ## Pre-requisites
+In order to complete this lab, you will need to have the following software installed in your computer:
+1) Spring Tool Suite or your preferred Java/Spring IDE
+1) Lastes version of <a href="https://maven.apache.org/" target="_blank">Maven</a>
+1) Latest version of Git client
+1) Latest version of Concourse's `fly` command-line tool
 
 ## Getting started
 Run Person Service
