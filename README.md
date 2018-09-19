@@ -6,7 +6,7 @@ In order to complete this lab, you will need to install the following software i
 1) Latest version of [Concourse's fly command-line tool](https://github.com/concourse/fly)
 
 # Contract Testing
-Dev teams frequently need to make schema changes and/or functionality changes to said services.
+Dev teams frequently need to make schema changes and/or functionality changes to existing services.
 The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's solution is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
 
 # Contract Testing with Spring Cloud Contract
@@ -17,7 +17,7 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 
 ![The System](TheSystem.png)
 
-The `MyAccount` app (a.k.a. the consumer) creates a consumer-driven contract to make sure that the integration with the `PersonService` app is aligned with the specifications. If, in the future, the API of the `PersonService` app changes, then the tests of `MyAccount` app will identify the incompatibility and consequently fail.
+The `MyAccount` app creates a consumer-driven contract to make sure that the integration with the `PersonService` app is aligned with the specifications. If, in the future, the API of the `PersonService` app changes, then the tests of `MyAccount` app will identify the incompatibility and consequently fail.
 
 
 ## Getting started
@@ -34,13 +34,13 @@ mvn spring-boot:run
 ```
 Visit the `PersonService` app in the browser: [http://localhost:8000/person/1](http://localhost:8000/person/1) and [http://localhost:8000/person/2](http://localhost:8000/person/2)
 
-Optionally, if you would like to know more about the `PersonService` app, please look these files in your IDE:
+Optionally, if you would like to know more about the `PersonService` app, please look at these files in your IDE:
 1) `PersonService` API: `person-service/src/main/java/hello/PersonRestController.java`
 1) Consumer-driven contract: `person-service/src/test/resources/contracts/hello/find_person_by_id.groovy`
 1) Contract test's parent class: `person-service/src/test/java/hello/BaseClass.java`
 1) Maven configuration file, which includes Spring Cloud Contract configuration: `person-service/pom.xml`
 
-## Understanding the `MyAccount` app
+## Run the `MyAccount` app
 
 1) The `MyAccount` app (a.k.a. the consumer) creates a consumer-driven contract to make sure that the integration with the `PersonService` app is aligned with the specifications. 
 
