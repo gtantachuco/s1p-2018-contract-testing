@@ -1,3 +1,10 @@
+# Pre-requisites
+In order to complete this lab, you will need to install the following software in your computer:
+1) [Spring Tool Suite](https://spring.io/tools) or your preferred Java/Spring IDE
+1) Lastes version of [Maven](https://maven.apache.org/)
+1) Latest version of [Git client](https://git-scm.com/)
+1) Latest version of [Concourse's fly command-line tool](https://github.com/concourse/fly)
+
 # Contract Testing with Spring Cloud Contract
 
 Your company may have many existing services that provide business functionality to customers, internal users and/or partners.
@@ -14,13 +21,6 @@ __Consumer-driven contracts__ allow you to test integration points between servi
 
 ## The Tool: Spring Cloud Contract
 With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. Let's see how two (2) Spring boot apps are configured to leverage Spring Cloud Contract.
-
-## Pre-requisites
-In order to complete this lab, you will need to have the following software installed in your computer:
-1) [Spring Tool Suite](https://spring.io/tools) or your preferred Java/Spring IDE
-1) Lastes version of [Maven](https://maven.apache.org/)
-1) Latest version of [Git client](https://git-scm.com/)
-1) Latest version of [Concourse's fly command-line tool](https://github.com/concourse/fly)
 
 ## Getting started
 Run Person Service
