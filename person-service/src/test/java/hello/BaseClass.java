@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ContractRestServiceApplication.class)
+@SpringBootTest(classes = PersonServiceApplication.class)
 public abstract class BaseClass {
 	
 	@Autowired PersonRestController personRestController;

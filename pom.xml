@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-contract-rest</artifactId>
+    <artifactId>s1p-2018-contract-rest</artifactId>
     <version>0.1.0</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>contract-rest-service</module>
-        <module>contract-rest-client</module>
+        <module>person-service</module>
+        <module>myaccount-client</module>
     </modules>
 
 </project>
