@@ -28,20 +28,27 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 
 ## Getting started
 1) Create a folder in the filesystem and `cd` to it
-2) `git clone https://github.com/gtantachuco-pivotal/s1p-2018-contract-testing.git`
-3) Import it as an _Existing Maven project_ into your IDE. Choose the `s1p-2018-contract-testing` folder as the `Root Directory`
+1) `git clone https://github.com/gtantachuco-pivotal/s1p-2018-contract-testing.git`
+1) Import it as an _Existing Maven project_ into your IDE. Choose the `s1p-2018-contract-testing` folder as the `Root Directory`
 
-## Understanding the `PersonService` app
-1) To know more about the `PersonService` API, take a quick look at `person-service/src/main/java/hello/PersonRestController.java` class
-1) Review the consumer contract at `person-service/src/test/resources/contracts/hello/find_person_by_id.groovy`
-1) Look at the contract test's parent class at `person-service/src/test/java/hello/BaseClass.java`
-1) Build the project
+## Run the `PersonService` app
+Let's build and run the app
 ```
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/person-service
 mvn clean package
+mvn spring-boot:run
 ```
+Visit the `PersonService` app in the browser: [http://localhost:8000/person/1](http://localhost:8000/person/1) and [http://localhost:8000/person/2](http://localhost:8000/person/2)
+
+Optionally, if you would like to know more about the `PersonService` app, please look these files in your IDE:
+1) `PersonService` API: `person-service/src/main/java/hello/PersonRestController.java`
+1) Consumer-driven contract: `person-service/src/test/resources/contracts/hello/find_person_by_id.groovy`
+1) Contract test's parent class: `person-service/src/test/java/hello/BaseClass.java`
+1) Maven configuration file, which includes Spring Cloud Contract configuration: `person-service/pom.xml`
 
 ## Understanding the `MyAccount` app
+
+
 
 ## Service evolution - scenario 1: Change REST endpoint of the Person service's _Find By ID_ method
 
