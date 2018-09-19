@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class ContractRestClientApplication {
+public class MyAccountApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ContractRestClientApplication.class, args);
+		SpringApplication.run(MyAccountApplication.class, args);
 	}
 }
 
@@ -28,7 +28,7 @@ class MessageRestController {
 	@RequestMapping("/message/{personId}")
 	String getMessage(@PathVariable("personId") Long personId) {
 		Person person = this.restTemplate.getForObject("http://localhost:8000/person/{personId}", Person.class, personId);
-		return "Hello " + person.getName();
+		return "Hello " + person.getName() + " " + person.getSurname();
 	}
 
 }

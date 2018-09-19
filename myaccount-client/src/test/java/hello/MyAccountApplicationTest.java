@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ContractRestClientApplicationTest {
+public class MyAccountApplicationTest {
 
 	@Rule
 	public StubRunnerRule stubRunnerRule = new StubRunnerRule()
