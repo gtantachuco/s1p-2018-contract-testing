@@ -17,43 +17,36 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 
 ![The System](TheSystem.png)
 
-The `MyAccount` app creates a consumer-driven contract to make sure that the integration with the `PersonService` app is aligned with the specifications. If, in the future, the API of the `PersonService` app changes, then the tests of `MyAccount` app will identify the incompatibility and consequently fail.
-
-
 ## Getting started
 1) Create a folder in the filesystem and `cd` to it
 1) `git clone https://github.com/gtantachuco-pivotal/s1p-2018-contract-testing.git`
 1) Import it as an _Existing Maven project_ into your IDE. Choose the `s1p-2018-contract-testing` folder as the `Root Directory`
 
-## Run the `PersonService` app
-Let's build and run the app
+## Build the `PersonService` app
 ```
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/person-service
 mvn clean package
-mvn spring-boot:run
 ```
-Visit the `PersonService` app in the browser: [http://localhost:8000/person/1](http://localhost:8000/person/1) and [http://localhost:8000/person/2](http://localhost:8000/person/2)
-
-Optionally, if you would like to know more about the `PersonService` app, please look at these files in your IDE:
+__Optional:__ if you would like to know more about the `PersonService` app, please look at these files in your IDE:
 1) `PersonService` API: `person-service/src/main/java/hello/PersonRestController.java`
 1) Consumer-driven contract: `person-service/src/test/resources/contracts/hello/find_person_by_id.groovy`
 1) Contract test's parent class: `person-service/src/test/java/hello/BaseClass.java`
 1) Maven configuration file, which includes Spring Cloud Contract configuration: `person-service/pom.xml`
 
-## Run the `MyAccount` app
-Let's build and run the app
+## Build the `MyAccount` app
 ```
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/myaccount-client
 mvn clean package
-mvn spring-boot:run
 ```
-Visit the `MyAccount` app in the browser: [http://localhost:9000/message/1](http://localhost:9000/message/1) and [http://localhost:9000/message/2](http://localhost:9000/message/2)
+The `MyAccount` app has a consumer-driven contract test, that runs every time the app is built, to make sure that the integration with the `PersonService` app is aligned with the specifications. 
 
-Optionally, if you would like to know more about the `MyAccount` app, please look at these files in your IDE:
+__Optional:__, if you would like to know more about the `MyAccount` app, please look at these files in your IDE:
 1) MessageRestController's `getMessage` method: `/myaccount-client/src/main/java/hello/MyAccountApplication.java`
 1) MyApp's contract test: `/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java`. Look at the methods in the `StubRunnerRule` JUnit rule
 
 ## Service evolution - scenario 1: Change REST endpoint of the Person service's _Find By ID_ method
+If, in the future, the API of the `PersonService` app changes, then said tests of `MyAccount` app will identify the incompatibility and consequently fail.
+
 
 ## Service evolution - scenario 1: Change name of Person's _last name_ field
 
