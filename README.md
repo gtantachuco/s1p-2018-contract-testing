@@ -29,15 +29,23 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 ## Getting started
 1) Create a folder in the filesystem and `cd` to it
 2) `git clone https://github.com/gtantachuco-pivotal/s1p-2018-contract-testing.git`
-3) Import this project as an _Existing Maven project_ into your IDE
+3) Import it as an _Existing Maven project_ into your IDE. Choose the `s1p-2018-contract-testing` folder as the `Root Directory`
 
-## Scenario 1: Happy path
+## Understanding the `PersonService` app
+1) To know more about the `PersonService` API, take a quick look at `person-service/src/main/java/hello/PersonRestController.java` class
+1) Review the consumer contract at `person-service/src/test/resources/contracts/hello/find_person_by_id.groovy`
+1) Look at the contract test's parent class at `person-service/src/test/java/hello/BaseClass.java`
+1) Build the project
+```
+cd <YOUR_FOLDER>/s1p-2018-contract-testing/person-service
+mvn clean package
+```
 
-`cd <YOUR_FOLDER>/s1p-2018-contract-testing`
+## Understanding the `MyAccount` app
 
-## Scenario 2: Change REST endpoint of the Person service's _Find By ID_ method
+## Service evolution - scenario 1: Change REST endpoint of the Person service's _Find By ID_ method
 
-## Scenario 3: Change name of Person's _last name_ field
+## Service evolution - scenario 1: Change name of Person's _last name_ field
 
 ## Scenario 4: CI/CD with Concourse
 Our goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
