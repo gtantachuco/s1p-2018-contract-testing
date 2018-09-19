@@ -41,8 +41,17 @@ Optionally, if you would like to know more about the `PersonService` app, please
 1) Maven configuration file, which includes Spring Cloud Contract configuration: `person-service/pom.xml`
 
 ## Run the `MyAccount` app
+Let's build and run the app
+```
+cd <YOUR_FOLDER>/s1p-2018-contract-testing/myaccount-client
+mvn clean package
+mvn spring-boot:run
+```
+Visit the `MyAccount` app in the browser: [http://localhost:9000/message/1](http://localhost:9000/message/1) and [http://localhost:9000/message/2](http://localhost:9000/message/2)
 
-1) The `MyAccount` app (a.k.a. the consumer) creates a consumer-driven contract to make sure that the integration with the `PersonService` app is aligned with the specifications. 
+Optionally, if you would like to know more about the `MyAccount` app, please look at these files in your IDE:
+1) MessageRestController's `getMessage` method: `/myaccount-client/src/main/java/hello/MyAccountApplication.java`
+1) MyApp's contract test: `/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java`. Look at the methods in the `StubRunnerRule` JUnit rule
 
 ## Service evolution - scenario 1: Change REST endpoint of the Person service's _Find By ID_ method
 
