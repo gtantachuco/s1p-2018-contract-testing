@@ -7,7 +7,7 @@ In order to complete this lab, you will need to install the following software i
 
 # Contract Testing
 Dev teams frequently need to make schema changes and/or functionality changes to existing services.
-The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's solution is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
+The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's recommendation is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
 
 # Contract Testing with Spring Cloud Contract
 With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
@@ -27,6 +27,8 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/person-service
 mvn clean package
 ```
+![build-person-service](build-person-service.png)
+
 __Optional:__ if you would like to know more about the `PersonService` app, please look at these files in your IDE:
 1) `PersonService` API: `person-service/src/main/java/hello/PersonRestController.java`
 1) Consumer-driven contract: `person-service/src/test/resources/contracts/hello/find_person_by_id.groovy`
