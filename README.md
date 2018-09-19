@@ -20,9 +20,12 @@ The question is: __How do you do that without impacting your existing consumers?
 __Consumer-driven contracts__ allow you to test integration points between services providers and its consumers without setting up the whole runtime environment. Based on a common API contract, you can run isolated tests between the consumer and a mock provider; and, between a mock consumer and the real provider.
 
 ## The Tool: Spring Cloud Contract
-With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. Let's see how two (2) Spring boot apps are configured to leverage Spring Cloud Contract.
+With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. Let's use two (2) Spring boot apps to understand how we can leverage Spring Cloud Contract.
 
 ## Getting started
+
+
+
 Run Person Service
 Run Client app
 
