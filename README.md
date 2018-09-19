@@ -20,16 +20,20 @@ The question is: __How do you do that without impacting your existing consumers?
 __Consumer-driven contracts__ allow you to test integration points between services providers and its consumers without setting up the whole runtime environment. Based on a common API contract, you can run isolated tests between the consumer and a mock provider; and, between a mock consumer and the real provider.
 
 ## The Tool: Spring Cloud Contract
-With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. Let's use two (2) Spring boot apps to understand how we can leverage Spring Cloud Contract.
+With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
+
+1) The `PersonService` app (a.k.a. the producer) provides an API
+1) The `MyAccount` app (a.k.a. the consumer) creates a consumer-driven contract to make sure that the integration with the `PersonService` app is aligned with the specifications. 
+1) If in the future, the API of the `PersonService` app changes, then the tests of `MyAccount` app will identify the incompatibility and consequently fail.
 
 ## Getting started
-
-
-
-Run Person Service
-Run Client app
+1) Create a folder in the filesystem and `cd` to it
+2) `git clone https://github.com/gtantachuco-pivotal/s1p-2018-contract-testing.git`
+3) Import this project as an _Existing Maven project_ into your IDE
 
 ## Scenario 1: Happy path
+
+`cd <YOUR_FOLDER>/s1p-2018-contract-testing`
 
 ## Scenario 2: Change REST endpoint of the Person service's _Find By ID_ method
 
