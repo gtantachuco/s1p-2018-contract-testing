@@ -17,10 +17,10 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 
 ## Pre-requisites
 In order to complete this lab, you will need to have the following software installed in your computer:
-1) Spring Tool Suite or your preferred Java/Spring IDE
-1) Lastes version of <a href="https://maven.apache.org/" target="_blank">Maven</a>
-1) Latest version of Git client
-1) Latest version of Concourse's `fly` command-line tool
+1) [Spring Tool Suite](https://spring.io/tools) or your preferred Java/Spring IDE
+1) Lastes version of [Maven](https://maven.apache.org/)
+1) Latest version of [Git client](https://git-scm.com/)
+1) Latest version of [Concourse's fly command-line tool](https://github.com/concourse/fly)
 
 ## Getting started
 Run Person Service
