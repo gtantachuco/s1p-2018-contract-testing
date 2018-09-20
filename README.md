@@ -10,6 +10,7 @@ In order to complete this lab, you will need to install the following software i
 Dev teams frequently need to make schema changes and/or functionality changes to existing services.
 The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's recommendation is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
 The goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
+
 ![Test Pyramid](testing_pyramid.png)
 
 ## Who should use consumer-drive contracts?
@@ -80,6 +81,10 @@ This picture depicts what happens when you build the app:
 1) Build the `PersonService` app
 
 ## Use CI/CD pipeline with Concourse
+1) In a new Terminal window, start Concourse server: `docker-compose up -d`
+1) In your browser, go to [http://127.0.0.1:8080](http://127.0.0.1:8080/) to ensure Concourse started properly
+1) Login to Concourse: `fly login -t s1p -u test -p test -c http://127.0.0.1:8080`
+
 
 
 # Resources
