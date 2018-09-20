@@ -23,6 +23,11 @@ With Spring Cloud Contract, you can successfully implement Consumer-driven Contr
 1) Import it as an _Existing Maven project_ into your IDE. Choose the `s1p-2018-contract-testing` folder as the `Root Directory`
 
 ## Build the `PersonService` app
+During the present Sprint, the `PersonService` team creates the contract test's parent class: [BaseClass](person-service/src/test/java/hello/BaseClass.java).
+
+In addition, the `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase
+
+We are ready to build the app via these commands:
 ```
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/person-service
 mvn clean package
@@ -30,24 +35,25 @@ mvn clean package
 This picture depicts what happens when you build the app:
 ![build-person-service](build-person-service.png)
 
-1) The `PersonService` team creates the contract test's parent class: [BaseClass](person-service/src/test/java/hello/BaseClass.java)
-1) The `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase
-1) The [Maven build](person-service/pom.xml) and Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests. You can use your IDE to view the source code of the generated test at: `/person-service/target/generated-test-sources/contracts/hello/HelloTest.java`
+1) The [Maven build](person-service/pom.xml) and Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests
+1) You can use your IDE to view the source code of the generated test at: `/person-service/target/generated-test-sources/contracts/hello/HelloTest.java`
 1) Once Spring Cloud Contract verifies that `PersonService` implementation is compliant with the contract, Maven generates and installs both Stubs (`person-service-0.0.1-SNAPSHOT-stubs.jar`) and the `PersonService` app (`person-service-0.0.1-SNAPSHOT.jar`) artifacts in the designated Maven repo
 
 ## Build the `MyAccount` app
+During the same Sprint, the `MyAccount` app has also created a [consumer-driven contract test](/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java) to ensure the integration with the `PersonService` app is aligned with the specifications.
+
+Let's build the app:
 ```
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/myaccount-client
 mvn clean package
 ```
-
 This picture depicts what happens when you build the app:
+
 ![build-myaccount-client](build-myaccount-client.png)
 
-1) The `MyAccount` app has a [consumer-driven contract test](/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java) to ensure the integration with the `PersonService` app is aligned with the specifications
-1) The Stub Runner in your JUnit test will automatically download the required stubs from the designated Maven repo
+1) When the [Maven build](/myaccount-client/pom.xml) is executed, the Stub Runner in your JUnit test will automatically download the required stubs from the designated Maven repo
 1) The Spring Cloud Contract Stub Runner will also automatically start a WireMock server inside your test and feed it with the stubs it downloaded in the previous step
-1) 1) Once Spring Cloud Contract verifies that `MyAccount` implementation is compliant with the contract, Maven generates and installs `myaccount-client-0.0.1-SNAPSHOT.jar` in the designated Maven repo
+1) Once Spring Cloud Contract verifies that `MyAccount` implementation is compliant with the contract, Maven generates and installs `myaccount-client-0.0.1-SNAPSHOT.jar` in the designated Maven repo
 
 ## Service evolution - scenario 1: Change REST endpoint of the Person service's _Find By ID_ method
 If, in the future, the API of the `PersonService` app changes, then said tests of `MyAccount` app will identify the incompatibility and consequently fail.
