@@ -40,6 +40,7 @@ This picture depicts what happens when you build the app:
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/myaccount-client
 mvn clean package
 ```
+
 This picture depicts what happens when you build the app:
 ![build-myaccount-client](build-myaccount-client.png)
 
