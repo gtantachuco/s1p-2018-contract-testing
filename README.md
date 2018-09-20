@@ -9,6 +9,8 @@ In order to complete this lab, you will need to install the following software i
 Dev teams frequently need to make schema changes and/or functionality changes to existing services.
 The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's recommendation is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
 
+![Test Pyramid](testing_pyramid.png)
+
 ## Contract Testing with Spring Cloud Contract
 With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
 
@@ -75,7 +77,7 @@ This picture depicts what happens when you build the app:
 
 ## Use CI/CD pipeline with Concourse
 Our goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
-![Test Pyramid](testing_pyramid.png)
+
 
 ## Scenario 5: Developing with Atomist
 
