@@ -3,13 +3,17 @@ In order to complete this lab, you will need to install the following software i
 1) [Spring Tool Suite](https://spring.io/tools) or your preferred Java/Spring IDE
 1) Lastes version of [Maven](https://maven.apache.org/)
 1) Latest version of [Git client](https://git-scm.com/)
+1) Latest version of [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 1) Latest version of [Concourse's fly command-line tool](https://github.com/concourse/fly)
 
 ## Contract Testing
 Dev teams frequently need to make schema changes and/or functionality changes to existing services.
 The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's recommendation is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
-
+The goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
 ![Test Pyramid](testing_pyramid.png)
+
+## Who should use consumer-drive contracts?
+This pattern is applicable in the context of either a single enterprise or a closed community of well-know services where providers have some influence over how consumers establish contracts with them.
 
 ## Contract Testing with Spring Cloud Contract
 With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
@@ -66,7 +70,7 @@ This picture depicts what happens when you build the app:
 1) Change its annotation back to `@GetMapping("/person/{id}")`. Save your changes
 1) Build the `PersonService` app
 
-## Service evolution: Change field name from `surname` to `lastname`
+## Service evolution: Change `Person` schema attribute from `surname` to `lastname`
 1) Open your IDE
 1) Find the [Person class](/person-service/src/main/java/hello/Person.java) 
 1) Use your IDE to replace the `surname` string with `lastname`. Save your changes
@@ -76,13 +80,6 @@ This picture depicts what happens when you build the app:
 1) Build the `PersonService` app
 
 ## Use CI/CD pipeline with Concourse
-Our goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
-
-
-## Scenario 5: Developing with Atomist
-
-## Who should use consumer-drive contracts?
-This pattern is applicable in the context of either a single enterprise or a closed community of well-know services where providers have some influence over how consumers establish contracts with them.
 
 
 # Resources
