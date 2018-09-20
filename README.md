@@ -51,7 +51,7 @@ This picture depicts what happens when you build the app:
 
 ![build-myaccount-client](build-myaccount-client.png)
 
-1) When the [Maven build](/myaccount-client/pom.xml) is executed, the Stub Runner in your JUnit test will automatically download the required stubs from the designated Maven repo
+1) When the [Maven build](/myaccount-client/pom.xml) is executed, the Spring Cloud Contract Stub Runner in your JUnit test will automatically download the required stubs from the designated Maven repo
 1) The Spring Cloud Contract Stub Runner will also automatically start a WireMock server inside your test and feed it with the stubs it downloaded in the previous step
 1) Once Spring Cloud Contract verifies that `MyAccount` implementation is compliant with the contract, Maven generates and installs `myaccount-client-0.0.1-SNAPSHOT.jar` in the designated Maven repo
 
