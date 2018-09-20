@@ -37,11 +37,11 @@ class Person {
 		this.name = name;
 	}
 
-	public String getSurname() {
+	public String getsurname() {
 		return surname;
 	}
 
-	public void setSurname(String surname) {
+	public void setsurname(String surname) {
 		this.surname = surname;
 	}
 }
