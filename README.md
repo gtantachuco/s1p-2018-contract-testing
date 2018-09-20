@@ -31,9 +31,9 @@ This picture depicts what happens when you build the app:
 ![build-person-service](build-person-service.png)
 
 1) The `PersonService` team creates the contract test's parent class: [BaseClass](person-service/src/test/java/hello/BaseClass.java)
-1) The `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in its codebase
+1) The `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase
 1) The [Maven build](person-service/pom.xml) and Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests
-1) Once it verifies that `PersonService` implementation is compliant with the contract, maven generates and installs both `person-service-0.0.1-SNAPSHOT-stubs.jar` and `person-service-0.0.1-SNAPSHOT.jar` artifacts in the designated maven repo
+1) Once Spring Cloud Contract verifies that `PersonService` implementation is compliant with the contract, Maven generates and installs both `person-service-0.0.1-SNAPSHOT-stubs.jar` and `person-service-0.0.1-SNAPSHOT.jar` artifacts in the designated maven repo
 
 ## Build the `MyAccount` app
 ```
