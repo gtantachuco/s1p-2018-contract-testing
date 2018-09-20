@@ -32,7 +32,7 @@ This picture depicts what happens when you build the app:
 
 1) The `PersonService` team creates the contract test's parent class: [BaseClass](person-service/src/test/java/hello/BaseClass.java)
 1) The `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase
-1) The [Maven build](person-service/pom.xml) and Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests
+1) The [Maven build](person-service/pom.xml) and Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests. You can use your IDE to view the source code of the generated test at: `/person-service/target/generated-test-sources/contracts/hello/HelloTest.java`
 1) Once Spring Cloud Contract verifies that `PersonService` implementation is compliant with the contract, Maven generates and installs both Stubs (`person-service-0.0.1-SNAPSHOT-stubs.jar`) and the `PersonService` app (`person-service-0.0.1-SNAPSHOT.jar`) artifacts in the designated Maven repo
 
 ## Build the `MyAccount` app
@@ -40,11 +40,13 @@ This picture depicts what happens when you build the app:
 cd <YOUR_FOLDER>/s1p-2018-contract-testing/myaccount-client
 mvn clean package
 ```
-The `MyAccount` app has a consumer-driven contract test, that runs every time the app is built, to make sure that the integration with the `PersonService` app is aligned with the specifications. 
+This picture depicts what happens when you build the app:
+![build-myaccount-client](build-myaccount-client.png)
 
-__Optional:__, if you would like to know more about the `MyAccount` app, please look at these files in your IDE:
-1) MessageRestController's `getMessage` method: `/myaccount-client/src/main/java/hello/MyAccountApplication.java`
-1) MyApp's contract test: `/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java`. Look at the methods in the `StubRunnerRule` JUnit rule
+1) The `MyAccount` app has a [consumer-driven contract test](/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java) to ensure the integration with the `PersonService` app is aligned with the specifications
+1) The Stub Runner in your JUnit test will automatically download the required stubs from the designated Maven repo
+1) The Spring Cloud Contract Stub Runner will also automatically start a WireMock server inside your test and feed it with the stubs it downloaded in the previous step
+1) 1) Once Spring Cloud Contract verifies that `MyAccount` implementation is compliant with the contract, Maven generates and installs `myaccount-client-0.0.1-SNAPSHOT.jar` in the designated Maven repo
 
 ## Service evolution - scenario 1: Change REST endpoint of the Person service's _Find By ID_ method
 If, in the future, the API of the `PersonService` app changes, then said tests of `MyAccount` app will identify the incompatibility and consequently fail.
