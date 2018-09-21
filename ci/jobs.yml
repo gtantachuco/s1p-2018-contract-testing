@@ -1,8 +1,16 @@
 jobs:
-- name: package
+- name: build-person-service
   plan:
   - get: source-code
     trigger: true
   - task: package
     privileged: true
-    file: source-code/ci/tasks/package.yml
+    file: source-code/ci/tasks/package-person.yml
+- name: build-myaccount-client
+  plan:
+  - get: source-code
+    trigger: true
+  - task: package
+    privileged: true
+    file: source-code/ci/tasks/package-myaccount.yml
+    
