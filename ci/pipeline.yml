@@ -1,4 +1,5 @@
 resources:
+
 - name: source-code
   type: git
   source:
@@ -28,12 +29,18 @@ jobs:
       manifest: source-code/person-service/manifest.yml
       current_app_name: {{PERSON-SERVICE-APP-NAME}}
 
-- name: build-myaccount-client
+- name: deploy-myaccount-client
   plan:
   - get: source-code
     passed:
-    - build-person-service
+    - deploy-person-service
     trigger: true
   - task: package
     file: source-code/ci/tasks/package-myaccount.yml
+  - put: pws
+    params:
+      manifest: source-code/myaccount-client/manifest.yml
+      current_app_name: {{MYACCOUNT-CLIENT-APP-NAME}}
+      environment_variables:
+        personservice: https://{{PERSON-SERVICE-APP-NAME}}.cfapps.io
     

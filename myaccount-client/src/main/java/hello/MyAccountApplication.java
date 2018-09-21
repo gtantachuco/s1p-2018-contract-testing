@@ -1,5 +1,6 @@
 package hello;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -20,6 +21,9 @@ public class MyAccountApplication {
 class MessageRestController {
 
 	private final RestTemplate restTemplate;
+	
+	@Value("${person.service.url}")
+	private String myURL;
 
 	MessageRestController(RestTemplateBuilder restTemplateBuilder) {
 		this.restTemplate = restTemplateBuilder.build();
@@ -27,7 +31,7 @@ class MessageRestController {
 
 	@RequestMapping("/message/{personId}")
 	String getMessage(@PathVariable("personId") Long personId) {
-		Person person = this.restTemplate.getForObject("http://localhost:8000/person/{personId}", Person.class, personId);
+		Person person = this.restTemplate.getForObject(myURL + "/person/{personId}", Person.class, personId);
 		return "Hello " + person.getName() + " " + person.getSurname();
 	}
 

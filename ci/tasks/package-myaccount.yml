@@ -9,5 +9,8 @@ image_resource:
 inputs:
 - name: source-code
 
+outputs:
+- name: build-output
+
 run:
   path: source-code/ci/tasks/package-myaccount.sh

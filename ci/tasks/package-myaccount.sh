@@ -8,3 +8,5 @@ cd source-code/person-service
 cd ../myaccount-client
 ../mvnw clean install
 
+cp target/*.jar ../../build-output/
+
