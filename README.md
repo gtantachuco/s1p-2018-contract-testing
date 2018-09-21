@@ -1,5 +1,6 @@
 ## Pre-requisites
 In order to complete this lab, you will need to install the following software in your computer:
+1) A [Pivotal Web Services](https://run.pivotal.io) account
 1) [Spring Tool Suite](https://spring.io/tools) or your preferred Java/Spring IDE
 1) Lastes version of [Maven](https://maven.apache.org/)
 1) Latest version of [Git client](https://git-scm.com/)
@@ -85,8 +86,13 @@ This picture depicts what happens when you build the app:
 1) In a new Terminal window, start Concourse server: `docker-compose up -d`
 1) In your browser, go to [http://127.0.0.1:8080](http://127.0.0.1:8080/) with test/test as username and password
 1) Login to Concourse: `fly login -t s1p -u test -p test -c http://127.0.0.1:8080`
-1) Set the pipeline: `fly --target s1p set-pipeline --pipeline spring-boot-maven --config <(cat ci/resources.yml ci/jobs.yml)`
-1) Unpause the pipeline: `fly --target s1p unpause-pipeline --pipeline spring-boot-maven`
+1) Customize the Concourse [parameters](ci/params.yml) file with your Pivotal Web Services settings
+1) Set the pipeline and unpause it
+```
+cd <YOUR_FOLDER>/s1p-2018-contract-testing/ci
+fly -t s1p set-pipeline -p deploy-pcf -c pipeline.yml -l params.yml
+fly -t s1p unpause-pipeline --pipeline deploy-pcf
+```
 
 # Resources
 REST and Async messaging example: <Marcin github repo: https://github.com/marcingrzejszczak/sc-contract-car-rental>
