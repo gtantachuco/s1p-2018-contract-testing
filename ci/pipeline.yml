@@ -23,7 +23,11 @@ jobs:
     trigger: true
   - task: package
     file: source-code/ci/tasks/package-person.yml
-    
+  - put: pws
+    params:
+      manifest: source-code/person-service/manifest.yml
+      current_app_name: {{PERSON-SERVICE-APP-NAME}}
+
 - name: build-myaccount-client
   plan:
   - get: source-code
