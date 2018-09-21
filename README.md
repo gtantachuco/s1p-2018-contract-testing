@@ -83,16 +83,62 @@ This picture depicts what happens when you build the app:
 
 
 ## Use CI/CD pipeline with Concourse
-1) In a new Terminal window, start Concourse server: `docker-compose up -d`
-1) In your browser, go to [http://127.0.0.1:8080](http://127.0.0.1:8080/) with test/test as username and password
-1) Login to Concourse: `fly login -t s1p -u test -p test -c http://127.0.0.1:8080`
-1) Customize the Concourse [parameters](ci/params.yml) file with your Pivotal Web Services settings
-1) Set the pipeline and unpause it
+Now that we are happy with our local test, we need to deploy both `PersonService` and `MyAccount` apps to production on Pivotal Web Services. Let's get started.
+
+In a new Terminal window, check if Concourse is already running
 ```
-cd <YOUR_FOLDER>/s1p-2018-contract-testing/ci
-fly -t s1p set-pipeline -p deploy-pcf -c pipeline.yml -l params.yml
-fly -t s1p unpause-pipeline --pipeline deploy-pcf
+docker ps
+```
+If Concourse is running, you will see results similar to these:
+```
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES
+71d8a710ebb1        concourse/concourse   "/usr/local/bin/dumb…"   23 hours ago        Up 23 hours         0.0.0.0:8080->8080/tcp   s1p-2018-contract-testing_concourse_1
+21cb03f9e3a7        postgres              "docker-entrypoint.s…"   23 hours ago        Up 23 hours         5432/tcp                 s1p-2018-contract-testing_concourse-db_1
+```
+If Concourse is not running, issue this command
+```
+cd <YOUR_FOLDER>/s1p-2018-contract-testing
+docker-compose start
+```
+Now login to Concourse via the `fly` command-line: 
+```
+fly login -t s1p -u test -p test -c http://127.0.0.1:8080
 ```
 
+Customize the Concourse [parameters](ci/params.yml) file with your Pivotal Web Services settings. For example:
+```
+USERNAME: abc@gmail.com
+PASSWORD: n01d3@
+ORG: S1Pdemo1
+SPACE: development
+PERSON-SERVICE-APP-NAME: gt-person-service
+MYACCOUNT-CLIENT-APP-NAME: gt-myaccount-client
+```
+Set the pipeline and unpause it
+```
+cd <YOUR_FOLDER>/s1p-2018-contract-testing/ci
+fly -t s1p set-pipeline -p deploy-s1p-2018 -c pipeline.yml -l params.yml
+fly -t s1p unpause-pipeline --pipeline deploy-s1p-2018
+```
+In your browser, go to [http://127.0.0.1:8080](http://127.0.0.1:8080/) with test/test as username and password.
+Select the `deploy-s1p-2018` pipeline.
+
+![concourse_pipeline](concourse_pipeline.png)
+
+To trigger the Concourse deployment pipeline, choose the `deploy-person-service` box and the hit the `+` sign on the right hand corner.
+
+![concourse_job](concourse_job.png)
+
+Wait a few minutes until the pipeline finishes deploying both apps to PWS.
+
+To access the `PersonService`, access this URL: `https://PERSON-SERVICE-APP-NAME/person/1`. You should get this result:
+```
+```
+
+To access the `MyAccount` app, access this URL: `https://MYACCOUNT-CLIENT-APP-NAME/message/1`. You should get this result:
+```
+```
+That's all. Well, for now.
+
 # Resources
-REST and Async messaging example: <Marcin github repo: https://github.com/marcingrzejszczak/sc-contract-car-rental>
+If you would like to take a deeper dive, please take a look at [Marcin's car rental example](https://github.com/marcingrzejszczak/sc-contract-car-rental)
