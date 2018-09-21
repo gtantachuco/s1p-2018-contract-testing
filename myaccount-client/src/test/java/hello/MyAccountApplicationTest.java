@@ -17,7 +17,7 @@ public class MyAccountApplicationTest {
 
 	@Rule
 	public StubRunnerRule stubRunnerRule = new StubRunnerRule()
-		.downloadStub("com.example", "contract-rest-service", "0.0.1-SNAPSHOT", "stubs")
+		.downloadStub("com.example", "person-service", "0.0.1-SNAPSHOT", "stubs")
 		.withPort(8100)
 		.stubsMode(StubRunnerProperties.StubsMode.LOCAL);
 
