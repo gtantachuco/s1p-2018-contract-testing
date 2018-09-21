@@ -133,10 +133,12 @@ Wait a few minutes until the pipeline finishes deploying both apps to PWS.
 
 To access the `PersonService`, access this URL: `https://PERSON-SERVICE-APP-NAME.cfapps.io/person/1`. You should get this result:
 ```
+{"id":1,"name":"Person","surname":"One"}
 ```
 
 To access the `MyAccount` app, access this URL: `https://MYACCOUNT-CLIENT-APP-NAME.cfapps.io/message/1`. You should get this result:
 ```
+Hello Person One
 ```
 That's all. Well, for now.
 
