@@ -1,5 +1,5 @@
 ## Pre-requisites
-In order to complete this lab, you will need to install the following software in your computer:
+In order to complete this lab, you will need the following:
 1) A [Pivotal Web Services](https://run.pivotal.io) account
 1) [Spring Tool Suite](https://spring.io/tools) or your preferred Java/Spring IDE
 1) Lastes version of [Maven](https://maven.apache.org/)
@@ -9,8 +9,8 @@ In order to complete this lab, you will need to install the following software i
 
 ## Contract Testing
 Dev teams frequently need to make schema changes and/or functionality changes to existing services.
-The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's recommendation is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between a mock consumer and the real provider; alll of this without setting up the _whole runtime environment_. 
-The goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, contract tests should have a place in the testing pyramid.
+The main challenge is: __How do you do that without impacting your existing consumers?__ Pivotal's recommendation is to leverage Consumer-driven contracts. That way, based on a common API contract, you can run integration tests between the consumer and a mock provider; and, between the real provider and a mock consumer; __alll of this without setting up all your upstream or downstream systems__. 
+The main goal is to fail the build of the application when there is faulty integration, so together with unit and integration tests, your contract tests must have a place in your test suite.
 
 ![Test Pyramid](testing_pyramid.png)
 
@@ -18,22 +18,24 @@ The goal is to fail the build of the application when there is faulty integratio
 This pattern is applicable in the context of either a single enterprise or a closed community of well-know services where providers have some influence over how consumers establish contracts with them.
 
 ## Contract Testing with Spring Cloud Contract
-With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and non-JVM apps. To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
+With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and [non-JVM apps](https://spring.io/blog/2018/02/13/spring-cloud-contract-in-a-polyglot-world). To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
 
-1) The `PersonService` app (a.k.a. the producer) provides an API to find a given person using his or her ID
-1) The `MyAccount` app (a.k.a. the consumer) accesses that API to get said person's names, email and phone. 
+1) The `PersonService` app (a.k.a. the producer) which provides an API to find a given person using his or her ID
+1) The `MyAccount` app (a.k.a. the consumer) which accesses that API to get said person's names, email and phone. 
 
 ![The System](TheSystem.png)
 
 ## Getting started
 1) Create a folder in the filesystem and `cd` to it
-1) `git clone https://github.com/gtantachuco-pivotal/s1p-2018-contract-testing.git`
+1) `git clone https://github.com/Pivotal-Field-Engineering/s1p-2018-contract-testing.git`
 1) Import it as an _Existing Maven project_ into your IDE. Choose the `s1p-2018-contract-testing` folder as the `Root Directory`
 
 ## Build the `PersonService` app
-During the present Sprint, the `PersonService` team creates the contract test's parent class: [BaseClass](person-service/src/test/java/hello/BaseClass.java).
+During the current Sprint, the `PersonService` team has created the contract test's parent class: [BaseClass](person-service/src/test/java/hello/BaseClass.java).
 
-In addition, the `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase
+In parallel, the `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase.
+
+Feel free to review both BaseClass and the consumer contract using your IDE.
 
 We are ready to build the app via these commands:
 ```
