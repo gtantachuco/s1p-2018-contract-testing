@@ -125,6 +125,10 @@ Select the `deploy-s1p-2018` pipeline.
 
 ![concourse_pipeline](concourse_pipeline.png)
 
+You should now see the entire pipeline as shown below
+
+![concourse_details](concourse_details.png)
+
 To trigger the Concourse deployment pipeline, choose the `deploy-person-service` box and the hit the `+` sign on the right hand corner.
 
 ![concourse_job](concourse_job.png)
