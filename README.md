@@ -18,12 +18,16 @@ The main goal is to fail the build of the application when there is faulty integ
 This pattern is applicable in the context of either a single enterprise or a closed community of well-know services where providers have some influence over how consumers establish contracts with them.
 
 ## Contract Testing with Spring Cloud Contract
-With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and [non-JVM apps](https://spring.io/blog/2018/02/13/spring-cloud-contract-in-a-polyglot-world). To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
+With Spring Cloud Contract, you can successfully implement Consumer-driven Contracts for both JVM-based apps and [non-JVM apps](https://spring.io/blog/2018/02/13/spring-cloud-contract-in-a-polyglot-world). You can use it for both HTTP-based and message-based interactions. Spring Cloud Contract __greatly simplifies and significantly automates the maintenance of consumer-driven contracts for both producers and consumers__. Let's see how it does it.
+
+In this lab, we’ll explore writing producer- and consumer-side test cases through an HTTP interaction. To understand Spring Cloud Contract concepts, let's use it in the context of two (2) Spring Boots apps:
 
 1) The `PersonService` app (a.k.a. the producer) which provides an API to find a given person using his or her ID
 1) The `MyAccount` app (a.k.a. the consumer) which accesses that API to get said person's names, email and phone. 
 
 ![The System](TheSystem.png)
+
+
 
 ## Getting started
 1) Create a folder in the filesystem and `cd` to it
@@ -35,6 +39,8 @@ During the current Sprint, the `PersonService` team has created the contract tes
 
 In parallel, the `MyAccount` team created the consumer-driver contract [find_person_by_id.groovy](person-service/src/test/resources/contracts/hello/find_person_by_id.groovy); and provided it to the `PersonService` team, which included the contract definition in the `PersonService` codebase.
 
+![contract.png](contract.png)
+
 Feel free to review both BaseClass and the consumer contract using your IDE.
 
 We are ready to build the app via these commands:
@@ -45,9 +51,9 @@ mvn clean package
 This picture depicts what happens when you build the app:
 ![build-person-service](build-person-service.png)
 
-1) The [Maven build](person-service/pom.xml) and Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests
+1) When the [Maven build](person-service/pom.xml) runs, Spring Cloud Contract Verifier use the contract definition to _automatically generate_ full tests on your behalf
 1) You can use your IDE to view the source code of the generated test at: `/person-service/target/generated-test-sources/contracts/hello/HelloTest.java`
-1) Once Spring Cloud Contract verifies that `PersonService` implementation is compliant with the contract, Maven generates and installs both Stubs (`person-service-0.0.1-SNAPSHOT-stubs.jar`) and the `PersonService` app (`person-service-0.0.1-SNAPSHOT.jar`) artifacts in the designated Maven repo
+1) Once Spring Cloud Contract verifies that `PersonService` implementation is compliant with the contract, Maven generates and installs both stub artifact (`person-service-0.0.1-SNAPSHOT-stubs.jar`) and the `PersonService` app artifact (`person-service-0.0.1-SNAPSHOT.jar`) in your designated Maven repo.
 
 ## Build the `MyAccount` app
 During the same Sprint, the `MyAccount` app has also created a [consumer-driven contract test](/myaccount-client/src/test/java/hello/MyAccountApplicationTest.java) to ensure the integration with the `PersonService` app is aligned with the specifications.
@@ -61,9 +67,9 @@ This picture depicts what happens when you build the app:
 
 ![build-myaccount-client](build-myaccount-client.png)
 
-1) When the [Maven build](/myaccount-client/pom.xml) is executed, the Spring Cloud Contract Stub Runner in your JUnit test will automatically download the required stubs from the designated Maven repo
-1) The Spring Cloud Contract Stub Runner will also automatically start a WireMock server inside your test and feed it with the stubs it downloaded in the previous step
-1) Once Spring Cloud Contract verifies that `MyAccount` implementation is compliant with the contract, Maven generates and installs `myaccount-client-0.0.1-SNAPSHOT.jar` in the designated Maven repo
+1) When the [Maven build](/myaccount-client/pom.xml) is executed, the Spring Cloud Contract Stub Runner in your JUnit test will __automatically download the required stubs from your designated Maven repo__
+1) The Spring Cloud Contract Stub Runner will also __automatically start a WireMock server inside your test and feed it with the stubs it downloaded in the previous step__
+1) Once Spring Cloud Contract verifies that `MyAccount` implementation is compliant with the contract, Maven generates and installs the `MyAccount` artifact (`myaccount-client-0.0.1-SNAPSHOT.jar`) in your designated Maven repo
 
 ## Service evolution: Change `PersonService` endpoint from `/person` to `/people`
 1) Open your IDE
@@ -87,6 +93,8 @@ This picture depicts what happens when you build the app:
 ## Use CI/CD pipeline with Concourse
 Now that we are happy with our local test, we need to deploy both `PersonService` and `MyAccount` apps to production on Pivotal Web Services. Let's get started.
 
+### Start Concourse
+
 In a new Terminal window, check if Concourse is already running
 ```
 docker ps
@@ -102,6 +110,9 @@ If Concourse is not running, issue this command
 cd <YOUR_FOLDER>/s1p-2018-contract-testing
 docker-compose start
 ```
+
+### Customize the CI/CD pipeline with your preferences
+
 Now login to Concourse via the `fly` command-line: 
 ```
 fly login -t s1p -u test -p test -c http://127.0.0.1:8080
@@ -131,6 +142,8 @@ You should now see the entire pipeline as shown below
 
 ![concourse_details](concourse_details.png)
 
+### Run the CI/CD pipeline: Happy path
+
 To trigger the Concourse deployment pipeline, choose the `deploy-person-service` box and the hit the `+` sign on the right hand corner.
 
 ![concourse_job](concourse_job.png)
@@ -147,6 +160,9 @@ To access the `MyAccount` app, access this URL: `https://MYACCOUNT-CLIENT-APP-NA
 Hello Person One
 ```
 That's all. Well, for now.
+
+### Run the CI/CD pipeline: Service evolution
+
 
 # Resources
 If you would like to take a deeper dive, please take a look at [Marcin's car rental example](https://github.com/marcingrzejszczak/sc-contract-car-rental)
