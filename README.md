@@ -138,17 +138,16 @@ Select the `deploy-s1p-2018` pipeline.
 
 ![concourse_pipeline](concourse_pipeline.png)
 
-You should now see the entire pipeline as shown below
-
-![concourse_details](concourse_details.png)
-
 ### Run the CI/CD pipeline: Happy path
 
 To trigger the Concourse deployment pipeline, choose the `deploy-person-service` box and the hit the `+` sign on the right hand corner.
 
 ![concourse_job](concourse_job.png)
 
-Wait a few minutes until the pipeline finishes deploying both apps to PWS.
+Wait a few minutes until the pipeline finishes deploying both apps to PWS. After the Concourse pipeline successfully completes, you should now see the entire pipeline as shown below:
+
+![concourse_details](concourse_details.png)
+
 
 To access the `PersonService`, access this URL: `https://PERSON-SERVICE-APP-NAME.cfapps.io/person/1`. You should get this result:
 ```
@@ -159,10 +158,15 @@ To access the `MyAccount` app, access this URL: `https://MYACCOUNT-CLIENT-APP-NA
 ```
 Hello Person One
 ```
-That's all. Well, for now.
 
 ### Run the CI/CD pipeline: Service evolution
+Now that you successfully deployed both apps to PWS, try to exercise both service evolution scenarios:
+1) #service-evolution-change-personservice-endpoint-from-person-to-people
+1) #service-evolution-change-person-schema-attribute-from-surname-to-lastname
 
+__IMPORTANT: Please remember to `git push` your changes to the repo. The Concourse pipeline polls the Github repo for changes every minute.__
+
+Can you describe what happens?
 
 # Resources
 If you would like to take a deeper dive, please take a look at [Marcin's car rental example](https://github.com/marcingrzejszczak/sc-contract-car-rental)
