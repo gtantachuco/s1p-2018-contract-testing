@@ -161,8 +161,8 @@ Hello Person One
 
 ### Run the CI/CD pipeline: Service evolution
 Now that you successfully deployed both apps to PWS, try to exercise both service evolution scenarios:
-1) #service-evolution-change-personservice-endpoint-from-person-to-people
-1) #service-evolution-change-person-schema-attribute-from-surname-to-lastname
+1) [Change PersonService endpoint from /person to /people](#service-evolution-change-personservice-endpoint-from-person-to-people)
+1) [Change Person schema attribute from surname to lastname](#service-evolution-change-person-schema-attribute-from-surname-to-lastname)
 
 __IMPORTANT: Please remember to `git push` your changes to the repo. The Concourse pipeline polls the Github repo for changes every minute.__
 
