@@ -90,7 +90,7 @@ This picture depicts what happens when you build the app:
 1) Build the `PersonService` app
 
 
-## Use CI/CD pipeline with Concourse
+## Continuous Delivery to production with Concourse 
 Now that we are happy with our local test, we need to deploy both `PersonService` and `MyAccount` apps to production on Pivotal Web Services. Let's get started.
 
 ### Start Concourse
